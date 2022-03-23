@@ -4,9 +4,16 @@ export const Booklist = ({ language, getData }) => {
   const [bookData, setBookData] = useState(null);
 
   useEffect(() => {
-    const result = getData?.(language).then((response) =>
-      setBookData(response)
-    );
+    // getData?.(language).then((response) =>
+    //   setBookData(response)
+    // );
+
+    if (!language) return;
+    const fetchData = async () => {
+      const response = await getData(language);
+      setBookData(response);
+    };
+    fetchData();
   }, [language, getData]);
 
   return (
