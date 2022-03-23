@@ -1,7 +1,7 @@
-export const Booklist = (props) => {
+export const Booklist = ({ language }) => {
   return (
     <>
-      <p>this is book list component</p>
+      <p>this is {language} list component</p>
     </>
   );
 };
