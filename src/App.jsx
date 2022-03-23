@@ -1,9 +1,13 @@
-import { Booklist } from "./components/Booklist";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import axios from "axios";
+
+import { Booklist } from "./components/Booklist";
 
 const App = () => {
-  const getDataFromAPI = (keyword) => {
-    return `${keyword} books`;
+  const getDataFromAPI = async (keyword) => {
+    const requestUrl = "https://www.googleapis.com/books/v1/volumes?q=intitle:";
+    const result = await axios.get(`${requestUrl}${keyword}`);
+    return result;
   };
 
   const languages = ["React", "Vue", "Angular"];
