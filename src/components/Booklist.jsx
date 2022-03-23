@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 export const Booklist = ({ language, getData }) => {
-  // 🔽 ここから追加
   const [bookData, setBookData] = useState(null);
 
   useEffect(() => {
@@ -10,11 +9,15 @@ export const Booklist = ({ language, getData }) => {
     );
   }, [language, getData]);
 
-  // 🔼 ここまで追加
-
   return (
-    <>
-      <p>this is {JSON.stringify(bookData)} list component</p>
-    </>
+    <ul>
+      {bookData === null ? (
+        <p>now loading...</p>
+      ) : (
+        bookData.data.items.map((x, index) => (
+          <li key={index}>{x.volumeInfo.title}</li>
+        ))
+      )}
+    </ul>
   );
 };
