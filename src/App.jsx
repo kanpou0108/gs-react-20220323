@@ -1,12 +1,13 @@
 import { Booklist } from "./components/Booklist";
-// 🔽 Link を追加
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 const App = () => {
-  const languages = ["React", "Vue", "Angular"];
+  const getDataFromAPI = (keyword) => {
+    return `${keyword} books`;
+  };
 
+  const languages = ["React", "Vue", "Angular"];
   return (
-    // 🔽 編集
     <BrowserRouter>
       <h1>react app</h1>
       <ul>
@@ -22,9 +23,24 @@ const App = () => {
       </ul>
       <hr />
       <Routes>
-        <Route path="/react" element={<Booklist language={languages[0]} />} />
-        <Route path="/vue" element={<Booklist language={languages[1]} />} />
-        <Route path="/angular" element={<Booklist language={languages[2]} />} />
+        <Route
+          path="/react"
+          element={
+            <Booklist language={languages[0]} getData={getDataFromAPI} />
+          }
+        />
+        <Route
+          path="/vue"
+          element={
+            <Booklist language={languages[1]} getData={getDataFromAPI} />
+          }
+        />
+        <Route
+          path="/angular"
+          element={
+            <Booklist language={languages[2]} getData={getDataFromAPI} />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
